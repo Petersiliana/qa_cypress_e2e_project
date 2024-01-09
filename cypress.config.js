@@ -1,9 +1,10 @@
-const { defineConfig } = require('cypress');
+/* eslint-disable comma-dangle */
 const faker = require('faker');
+const { defineConfig } = require('cypress');
 const { clear } = require('./server/db');
 const { seed } = require('./server/db');
 const {
-  addMatchImageSnapshotPlugin
+  addMatchImageSnapshotPlugin,
 } = require('cypress-image-snapshot/plugin');
 
 module.exports = defineConfig({
@@ -13,11 +14,14 @@ module.exports = defineConfig({
       on('task', {
         generateUser() {
           const randomNumber = Math.ceil(Math.random(1000) * 1000);
+          const userName =
+            faker.name.firstName().toLowerCase() + `${randomNumber}`;
           return {
-            username: faker.name.firstName() + `${randomNumber}`,
-            email: 'test' + `${randomNumber}` + '@mail.com',
+
+            username: userName,
+            email: userName + '@mail.com',
             password: '12345Qwert!',
-            bio: faker.person.bio()
+            // bio: faker.person.bio()
           };
         },
         generateArticle() {
@@ -25,7 +29,7 @@ module.exports = defineConfig({
             title: faker.lorem.word(),
             description: faker.lorem.words(),
             body: faker.lorem.words(),
-            tag: faker.lorem.word()
+            tag: faker.lorem.word(),
           };
         },
         'db:clear'() {
@@ -37,9 +41,9 @@ module.exports = defineConfig({
           seed();
 
           return null;
-        }
+        },
       });
       addMatchImageSnapshotPlugin(on, config);
-    }
-  }
+    },
+  },
 });

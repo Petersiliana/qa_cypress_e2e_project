@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-md-10 offset-md-1">
-            <img :src="profile.image" class="user-img" />
+            <img :src ="profile.image" class="user-img" />
             <h4>{{ profile.username }}</h4>
             <p>{{ profile.bio }}</p>
             <div v-if="isCurrentUser()">
@@ -17,6 +17,7 @@
             </div>
             <div v-else>
               <button
+                data-qa="unfollow_button"
                 class="btn btn-sm btn-secondary action-btn"
                 v-if="profile.following"
                 @click.prevent="unfollow()"
@@ -25,6 +26,7 @@
                 {{ profile.username }}
               </button>
               <button
+                data-qa="follow_button"
                 class="btn btn-sm btn-outline-secondary action-btn"
                 v-if="!profile.following"
                 @click.prevent="follow()"
@@ -48,7 +50,10 @@
                   class="nav-link"
                   active-class="active"
                   exact
-                  :to="{ name: 'profile', params: { username: profile.username } }"
+                  :to="{
+                    name: 'profile',
+                    params: { username: profile.username },
+                  }"
                 >
                   My Articles
                 </router-link>
@@ -58,7 +63,10 @@
                   class="nav-link"
                   active-class="active"
                   exact
-                  :to="{ name: 'profile-favorites', params: { username: profile.username } }"
+                  :to="{
+                    name: 'profile-favorites',
+                    params: { username: profile.username },
+                  }"
                 >
                   Favorited Articles
                 </router-link>
@@ -73,19 +81,15 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex';
 
 export default {
-  name: "Profile",
+  name: 'Profile',
   mounted() {
-    this.$store.dispatch("fetchProfile", this.$route.params);
+    this.$store.dispatch('fetchProfile', this.$route.params);
   },
   computed: {
-    ...mapGetters([
-      "is_authenticated",
-      "profile",
-      "user",
-    ])
+    ...mapGetters(['is_authenticated', 'profile', 'user']),
   },
   methods: {
     isCurrentUser() {
@@ -96,18 +100,18 @@ export default {
     },
     follow() {
       if (!this.is_authenticated) return;
-      this.$store.dispatch("setFollowProfile", this.$route.params);
+      this.$store.dispatch('setFollowProfile', this.$route.params);
     },
     unfollow() {
-      this.$store.dispatch("setFollowProfile", this.$route.params);
-    }
+      this.$store.dispatch('setFollowProfile', this.$route.params);
+    },
   },
   watch: {
     $route(to) {
       if (to.params && to.params.username) {
-        this.$store.dispatch("fetchProfile", to.params);
+        this.$store.dispatch('fetchProfile', to.params);
       }
-    }
-  }
+    },
+  },
 };
 </script>

@@ -15,6 +15,7 @@
           <form @submit.prevent="onSubmit">
             <fieldset class="form-group">
               <input
+                data-qa="username_field"
                 class="form-control form-control-lg"
                 type="text"
                 v-model="username"
@@ -23,6 +24,7 @@
             </fieldset>
             <fieldset class="form-group">
               <input
+                data-qa="email_field"
                 class="form-control form-control-lg"
                 type="text"
                 v-model="email"
@@ -31,6 +33,7 @@
             </fieldset>
             <fieldset class="form-group">
               <input
+                data-qa="password_field"
                 class="form-control form-control-lg"
                 type="password"
                 v-model="password"

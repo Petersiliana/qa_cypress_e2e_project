@@ -1,11 +1,11 @@
 <template>
   <!-- Used when user is also author -->
   <span v-if="canModify">
-    <router-link class="btn btn-sm btn-outline-secondary" :to="editArticleLink">
+    <router-link class="btn btn-sm btn-outline-secondary" data-qa="edit-btn" :to="editArticleLink">
       <i class="ion-edit"></i> <span>&nbsp;Edit Article</span>
     </router-link>
     <span>&nbsp;&nbsp;</span>
-    <button class="btn btn-outline-danger btn-sm" @click="deleteArticle">
+    <button class="btn btn-outline-danger btn-sm" data-qa="delete-btn" @click="deleteArticle">
       <i class="ion-trash-a"></i> <span>&nbsp;Delete Article</span>
     </button>
   </span>
