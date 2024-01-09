@@ -2,6 +2,7 @@
 /// <reference types='../support' />
 
 // Made by Dawid Antkiewicz
+
 describe('Sign Up page', () => {
   let user;
   const passwordValidation = `Password must be 8 characters long and 

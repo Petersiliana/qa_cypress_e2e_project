@@ -1,6 +1,8 @@
 /// <reference types='cypress' />
 /// <reference types='../support' />
 
+// Created by Katrina
+
 describe('User', () => {
   // let user = {
   //   username: 'test_123',

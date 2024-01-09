@@ -1,6 +1,8 @@
-// Magda Kołaszewska
+
 /// <reference types='cypress' />
 /// <reference types='../support' />
+
+// Created by Magda Kołaszewska
 
 describe('Sign In page', () => {
   let user;

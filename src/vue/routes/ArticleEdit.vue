@@ -13,7 +13,6 @@
                   data-qa="article-title"
                   v-model="article.title"
                   placeholder="Article Title"
-                  data-qa="article-title"
                 />
               </fieldset>
               <fieldset class="form-group">
