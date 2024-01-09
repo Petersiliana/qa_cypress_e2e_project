@@ -52,7 +52,7 @@ describe('Article', () => {
     cy.getByDataQa('publish-btn').click();
     cy.get('h1').should('contain', 'test');
   });
-  //  Noemi
+  //  Noemi - bug report no. #1
   it('should not be edited when title is empty', () => {
     cy.register(user.email, user.username, user.password);
     cy.login(user.email, user.password);
